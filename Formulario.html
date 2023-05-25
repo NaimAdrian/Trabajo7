@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Formulario</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <form action="Bienvenida.html" method="get" onsubmit="return verificarContrasenas()">
+        <label>Nombres</label><input type="text" name="Nombres" value="Naim" required><br>
+        <label>Apellidos</label><input type="text" name="Apellidos" required><br>
+        <label>Correo</label><input type="text" name="Correo" required><br>
+        <label>Fecha de nacimiento</label><input type="date" id="Fechadenacimiento" required><br>
+        <label>Telefono</label><input type="tel" name="Telefono" required><br>
+        <label>Usuario</label><input type="text" name="Usuario" required><br>
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" required>
+        <br>
+        <label for="repetirContrasena">Repetir Contraseña:</label>
+        <input type="password" id="repetirContrasena" required>
+        <br>
+        <span id="mensajeError" style="color: red;"></span>
+
+        <a href="Bienvenida.html"><input type="submit" value="Registrar"></a>
+    </form>
+
+    <script>
+        function verificarContrasenas() {
+            var contrasena = document.getElementById('contrasena').value;
+            var repetirContrasena = document.getElementById('repetirContrasena').value;
+
+            if (contrasena !== repetirContrasena) {
+                document.getElementById('mensajeError').textContent = 'Las contraseñas no coinciden';
+                return false;
+            }
+            
+            if (contrasena.length <= 5){
+                alert("Su contraseña es insegura");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+</body>
+
+</html>
+
+</html>

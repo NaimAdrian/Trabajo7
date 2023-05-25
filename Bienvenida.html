@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Bienvenida</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <h1 id="mensaje"></h1>
+    <h2 id="Ape"></h2>
+    <h3 id="edad"></h3>
+    <ul>
+        <p id="Correo"></p>
+        <p id="Telefono"></p>
+    </ul>
+    <script>
+        getParameter = (key) => {
+
+            address = window.location.search;
+
+            parameterList = new URLSearchParams(address);
+
+            return parameterList.get(key);
+        }
+
+        console.log(getParameter("Nombres"));
+        var Nombre = getParameter("Nombres");
+
+        if (Nombre != null) {
+            document.getElementById("mensaje").innerHTML = "Bienvenido/a " + Nombre;
+        }
+
+        console.log(getParameter("Apellidos"))
+        var Apellidos = getParameter("Apellidos")
+
+        if (Apellidos != null) {
+            document.getElementById("Ape").innerHTML = Apellidos;
+        }
+
+        var Correo = parameterList.get('Correo');
+        var Telefono = parameterList.get('Telefono');
+
+        document.getElementById('Correo').innerHTML = '<a href="mailto:' + Correo + '">' + Correo + '</a>';
+        document.getElementById('Telefono').innerHTML = '<a href="tel:' + Telefono + '">' + Telefono + '</a>';
+
+        var Fechadenacimiento = new Date(parameterList.get('Fecha de nacimiento'));
+        var edad = CalcuEdad(Fechadenacimiento);
+        
+
+        function CalcuEdad(Fechadenacimiento){
+            var FechaActu = new Date();
+            var edad = FechaActu.getFullYear() - Fechadenacimiento.getFullYear();
+
+            var diferenciaMes =FechaActu.getMonth() - Fechadenacimiento.getMonth();
+            if(diferenciaMes < 0 || (diferenciaMes === 0 && FechaActu.getDate() < Fechadenacimiento.getDate())){
+                edad--;
+            }
+            document.getElementById('edad').textContent = 'Edad: ' + edad + ' años.';
+
+            return edad;
+        }
+
+    </script>
+</body>
+
+</html>
+</htlm>
